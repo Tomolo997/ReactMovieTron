@@ -24,22 +24,30 @@ export class TopMovies extends Component {
       console.log(error);
     }
   };
+
   render() {
-    return (
-      <div className={classes.TopMovies}>
-        <div className={classes.TopMovies_Heading}>Top trending movies</div>
-        <div className={classes.Cards}>
+    let PopularCards = null;
+    if (this.state.showMovies) {
+      PopularCards = this.state.movies.map((el) => {
+        return (
           <div className={classes.Card}>
             <div className={classes.CardImage}>
               {this.state.showMovies ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${this.state.movies[2].poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w200${el.poster_path}`}
                   alt=""
                 />
               ) : null}
+              <div>{el.title}</div>
             </div>
           </div>
-        </div>
+        );
+      });
+    }
+    return (
+      <div className={classes.TopMovies}>
+        <div className={classes.TopMovies_Heading}>Top trending movies</div>
+        <div className={classes.Cards}>{PopularCards}</div>
       </div>
     );
   }
