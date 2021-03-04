@@ -32,6 +32,9 @@ export class TopMovies extends Component {
 
   nextScrollMovie = () => {
     this.setState({ start: this.state.start + 7, end: this.state.end + 7 });
+    if (this.state.start > 12) {
+      this.setState({ start: 0, end: 7 });
+    }
   };
   prevScrollMovie = () => {
     this.setState({ start: this.state.start - 7, end: this.state.end - 7 });
