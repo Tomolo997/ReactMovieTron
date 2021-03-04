@@ -3,6 +3,9 @@
   height: 40vh;
   color: white;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .TopMovies_Heading {
   margin-top: 2rem;
@@ -11,4 +14,24 @@
   width: 100%;
   font-weight: 600;
   text-align: center;
+}
+
+.Cards {
+  display: flex;
+  width: 80%;
+  height: 100%;
+  margin-top: 2rem;
+  background-color: aqua;
+  align-items: center;
+}
+
+.Card {
+  width: 250px;
+  height: 300px;
+  border: 1px solid black;
+  margin-left: 2rem;
+}
+.CardImage {
+  height: 80%;
+  width: 100%;
 }
