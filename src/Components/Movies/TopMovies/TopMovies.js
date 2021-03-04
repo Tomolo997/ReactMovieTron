@@ -6,12 +6,16 @@ export class TopMovies extends Component {
   state = {
     movies: null,
     showMovies: false,
+    start: 0,
+    end: 7,
+    pages: 0,
   };
   async componentDidMount() {
     const data = await this.getPopularMovies();
 
     this.setState({ movies: data });
     this.setState({ showMovies: true });
+    this.setState({ pages: Math.ceil(data.length / 7) });
   }
 
   getPopularMovies = async () => {
@@ -19,16 +23,24 @@ export class TopMovies extends Component {
       const data = await axios.get(
         `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
+      console.log(data.data);
       return data.data.results;
     } catch (error) {
       console.log(error);
     }
   };
 
-  render() {
-    let PopularCards = null;
-    if (this.state.showMovies) {
-      PopularCards = this.state.movies.map((el) => {
+  nextScrollMovie = () => {
+    this.setState({ start: this.state.start + 7, end: this.state.end + 7 });
+  };
+  prevScrollMovie = () => {
+    this.setState({ start: this.state.start - 7, end: this.state.end - 7 });
+  };
+
+  scrollThroughMovies = () => {
+    return this.state.movies
+      .slice(this.state.start, this.state.end)
+      .map((el) => {
         return (
           <div className={classes.Card}>
             <div className={classes.CardImage}>
@@ -43,11 +55,33 @@ export class TopMovies extends Component {
           </div>
         );
       });
+  };
+
+  render() {
+    let PopularCards = null;
+    if (this.state.showMovies) {
+      PopularCards = this.scrollThroughMovies();
     }
     return (
       <div className={classes.TopMovies}>
         <div className={classes.TopMovies_Heading}>Top trending movies</div>
-        <div className={classes.Cards}>{PopularCards}</div>
+        <div className={classes.Cards}>
+          {PopularCards}
+          <div>
+            <button
+              className={classes.PreviusScrollButton}
+              onClick={this.prevScrollMovie}
+            >
+              &#60;
+            </button>
+            <button
+              className={classes.NextScrollButton}
+              onClick={this.nextScrollMovie}
+            >
+              &#62;{' '}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

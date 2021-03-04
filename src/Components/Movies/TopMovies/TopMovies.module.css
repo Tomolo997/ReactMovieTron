@@ -18,12 +18,13 @@
 
 .Cards {
   display: flex;
-  width: 80%;
+  width: 73%;
   height: 100%;
   margin-top: 2rem;
   align-items: center;
   overflow: scroll;
   overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .Card {
@@ -39,4 +40,35 @@
   flex-direction: column;
   align-items: center;
   font-size: 2rem;
+  position: relative;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.PreviusScrollButton {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  left: 15rem;
+  border-radius: 50%;
+  font-size: 7rem;
+  background-color: black;
+  color: rgb(223, 182, 182);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.NextScrollButton {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  right: 15rem;
+  border-radius: 50%;
+  font-size: 7rem;
+  background-color: black;
+  color: rgb(223, 182, 182);
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
