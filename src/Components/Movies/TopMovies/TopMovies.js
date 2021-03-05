@@ -38,6 +38,9 @@ export class TopMovies extends Component {
   };
   prevScrollMovie = () => {
     this.setState({ start: this.state.start - 7, end: this.state.end - 7 });
+    if (this.state.start < 2) {
+      this.setState({ start: 14, end: 21 });
+    }
   };
 
   scrollThroughMovies = () => {
