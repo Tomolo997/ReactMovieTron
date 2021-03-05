@@ -3,9 +3,9 @@ import classes from './TopMovies.module.css';
 import axios from 'axios';
 import { API_KEY } from '../../../config';
 import MovieCard from '../MovieCard/MovieCard';
-import MoviesHeader from '../../Ui/MoviesHeader/MoviesHeader';
-import NextButton from '../../Ui/NextButton/NextButton';
-import PreviousButton from '../../Ui/PreviousButton/PreviousButton';
+import MoviesHeader from '../../../Components/Ui/MoviesHeader/MoviesHeader';
+import NextButton from '../../../Components/Ui/NextButton/NextButton';
+import PreviousButton from '../../../Components/Ui/PreviousButton/PreviousButton';
 export class TopMovies extends Component {
   state = {
     movies: null,

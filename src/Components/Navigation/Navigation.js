@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Navigation.module.css';
 import Logo from './Logo/Logo';
-import Search from './Search/Search';
+import Search from '../../Containers/Search/Search';
 import { Route, Switch, Link } from 'react-router-dom';
 const Navigation = () => {
   return (

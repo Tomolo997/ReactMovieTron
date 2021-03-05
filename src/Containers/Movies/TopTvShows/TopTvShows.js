@@ -3,9 +3,9 @@ import classes from './TopTvShows.module.css';
 import axios from 'axios';
 import { API_KEY } from '../../../config';
 import MovieCard from '../MovieCard/MovieCard';
-import TvShowsHeader from '../../Ui/TvShowsHeader/TvShowsHeader';
-import NextButton from '../../Ui/NextButton/NextButton';
-import PreviousButton from '../../Ui/PreviousButton/PreviousButton';
+import TvShowsHeader from '../../../Components/Ui/TvShowsHeader/TvShowsHeader';
+import NextButton from '../../../Components/Ui/NextButton/NextButton';
+import PreviousButton from '../../../Components/Ui/PreviousButton/PreviousButton';
 
 export default class TopTvShows extends Component {
   state = {
