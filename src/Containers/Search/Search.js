@@ -7,13 +7,11 @@ class Search extends Component {
     currentValue: 'aa',
   };
 
-  componentDidUpdate() {
-    console.log(this.state.currentValue);
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
-      )
-      .then((res) => console.log(res));
+  async componentDidUpdate() {
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
+    );
+    console.log(res);
   }
 
   currentValueHandler = (e) => {
