@@ -1,0 +1,15 @@
+.AboutSection {
+  position: absolute;
+  border: 1px solid white;
+  top: 50%;
+  left: 50%;
+  width: 70rem;
+  height: 60rem;
+  transform: translate(-50%, -50%);
+}
+.SpanMovie {
+  color: red;
+}
+.SpanTron {
+  color: white;
+}

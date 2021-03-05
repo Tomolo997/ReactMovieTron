@@ -12,4 +12,5 @@ body {
 .App {
   height: 120vh;
   width: 100%;
+  background-color: black;
 }
