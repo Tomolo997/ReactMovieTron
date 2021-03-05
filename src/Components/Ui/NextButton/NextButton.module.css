@@ -1,0 +1,13 @@
+.NextScrollButton {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  right: 15rem;
+  border-radius: 50%;
+  font-size: 7rem;
+  background-color: black;
+  color: rgb(223, 182, 182);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

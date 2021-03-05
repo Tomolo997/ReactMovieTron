@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import classes from './TopMovies.module.css';
+import classes from './TopTvShows.module.css';
 import axios from 'axios';
 import { API_KEY } from '../../../config';
 import MovieCard from '../MovieCard/MovieCard';
-import MoviesHeader from '../../Ui/MoviesHeader/MoviesHeader';
+import TvShowsHeader from '../../Ui/TvShowsHeader/TvShowsHeader';
 import NextButton from '../../Ui/NextButton/NextButton';
 import PreviousButton from '../../Ui/PreviousButton/PreviousButton';
-export class TopMovies extends Component {
+
+export default class TopTvShows extends Component {
   state = {
     movies: null,
     showMovies: false,
@@ -24,16 +25,17 @@ export class TopMovies extends Component {
 
   getPopularMovies = async () => {
     try {
+      //api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1
       const data = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
+      console.log(data.data);
       console.log(data.data);
       return data.data.results;
     } catch (error) {
       console.log(error);
     }
   };
-
   nextScrollMovie = () => {
     this.setState({ start: this.state.start + 7, end: this.state.end + 7 });
     if (this.state.start > 12) {
@@ -58,12 +60,11 @@ export class TopMovies extends Component {
             showMovies={this.state.showMovies}
             id={el.id}
             poster_path={el.poster_path}
-            title={el.title}
+            title={el.name}
           ></MovieCard>
         );
       });
   };
-
   render() {
     let PopularCards = null;
     if (this.state.showMovies) {
@@ -71,7 +72,7 @@ export class TopMovies extends Component {
     }
     return (
       <div className={classes.TopMovies}>
-        <MoviesHeader />
+        <TvShowsHeader />
         <div className={classes.Cards}>
           {PopularCards}
           <div>
@@ -85,5 +86,3 @@ export class TopMovies extends Component {
     );
   }
 }
-
-export default TopMovies;

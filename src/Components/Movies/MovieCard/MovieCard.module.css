@@ -1,0 +1,15 @@
+.Card {
+  width: 250px;
+  height: 300px;
+  border: 1px solid black;
+  margin-left: 2rem;
+}
+.CardImage {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  position: relative;
+}
