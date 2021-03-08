@@ -54,6 +54,24 @@ export default class MovieDetails extends Component {
         return <p1>{el.name}, </p1>;
       });
     }
+
+    let cast = null;
+    if (this.state.cast !== null) {
+      cast = this.state.cast.map((el) => {
+        if (el.profile_path) {
+          return (
+            <div className={classes.CastCard}>
+              <img
+                className={classes.CardImg}
+                src={`https://image.tmdb.org/t/p/w200${el.profile_path}`}
+                alt=""
+              />
+              {el.name}
+            </div>
+          );
+        }
+      });
+    }
     return (
       <>
         <NavBar />{' '}
@@ -99,6 +117,10 @@ export default class MovieDetails extends Component {
               </span>
             </p>
           </div>
+          <div className={classes.CastTitle}>
+            <h1 className={classes.H1HeadingCast}>Cast:</h1>
+          </div>
+          <div className={classes.Cast}>{cast}</div>
         </div>
         <Footer />
       </>

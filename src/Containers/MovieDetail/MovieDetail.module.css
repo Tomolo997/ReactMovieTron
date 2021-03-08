@@ -53,3 +53,34 @@
   text-decoration: none;
   color: white;
 }
+
+.Cast {
+  color: aliceblue;
+  width: 100%;
+  grid-row: 6/8;
+  grid-column: 2/12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+.CastCard {
+  width: 6rem;
+  height: 100%;
+  text-align: center;
+  margin-left: 1rem;
+}
+.CardImg {
+  width: 6rem;
+}
+.CastTitle {
+  color: white;
+  grid-row: 5/6;
+  grid-column: 3/4;
+  display: flex;
+  margin-top: 4rem;
+  align-items: center;
+}
+.H1HeadingCast {
+  font-size: 3rem;
+}
