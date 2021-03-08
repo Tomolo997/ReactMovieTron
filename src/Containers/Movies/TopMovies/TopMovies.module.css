@@ -22,3 +22,8 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.LinkMovieCard {
+  text-decoration: none;
+  color: white;
+}

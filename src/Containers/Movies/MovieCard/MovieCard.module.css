@@ -13,3 +13,8 @@
   font-size: 2rem;
   position: relative;
 }
+
+.MovieTitle {
+  text-decoration: none;
+  color: whites;
+}

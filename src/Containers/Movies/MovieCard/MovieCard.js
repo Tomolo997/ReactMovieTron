@@ -10,7 +10,7 @@ const MovieCard = (props) => {
             alt=""
           />
         ) : null}
-        <div>{props.title}</div>
+        <div className={classes.MovieTitle}>{props.title}</div>
       </div>
     </div>
   );

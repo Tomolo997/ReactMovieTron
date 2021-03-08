@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import classes from './TopTvShows.module.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { API_KEY } from '../../../config';
 import MovieCard from '../MovieCard/MovieCard';
 import TvShowsHeader from '../../../Components/Ui/TvShowsHeader/TvShowsHeader';
@@ -55,13 +56,14 @@ export default class TopTvShows extends Component {
       .slice(this.state.start, this.state.end)
       .map((el) => {
         return (
-          <MovieCard
-            key={el.id}
-            showMovies={this.state.showMovies}
-            id={el.id}
-            poster_path={el.poster_path}
-            title={el.name}
-          ></MovieCard>
+          <Link to={`/${el.id}`} className={classes.LinkMovieCard} key={el.id}>
+            <MovieCard
+              showMovies={this.state.showMovies}
+              id={el.id}
+              poster_path={el.poster_path}
+              title={el.name}
+            ></MovieCard>
+          </Link>
         );
       });
   };
