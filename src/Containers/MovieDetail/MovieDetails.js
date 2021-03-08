@@ -66,7 +66,7 @@ export default class MovieDetails extends Component {
                 src={`https://image.tmdb.org/t/p/w200${el.profile_path}`}
                 alt=""
               />
-              {el.name}
+              <div className={classes.Name}>{el.name}</div>
             </div>
           );
         }

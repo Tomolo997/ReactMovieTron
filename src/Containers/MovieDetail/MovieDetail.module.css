@@ -58,20 +58,25 @@
   color: aliceblue;
   width: 100%;
   grid-row: 6/8;
+  height: 100%;
   grid-column: 2/12;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: scroll;
 }
 .CastCard {
-  width: 6rem;
-  height: 100%;
+  width: 11.2rem;
   text-align: center;
   margin-left: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background-color: black;
+}
+.CastCard:hover {
+  transform: translateY(-30px);
 }
 .CardImg {
-  width: 6rem;
+  width: 12rem;
 }
 .CastTitle {
   color: white;
@@ -83,4 +88,8 @@
 }
 .H1HeadingCast {
   font-size: 3rem;
+}
+
+.Name {
+  font-size: 1.2rem;
 }

@@ -16,6 +16,7 @@ class Search extends Component {
 
   currentValueHandler = (e) => {
     this.setState({ currentValue: e.target.value });
+    this.props.search();
   };
 
   render() {
