@@ -20,13 +20,17 @@ export default class TvShowDetails extends Component {
     runtime: null,
     searching: false,
     movies: null,
+    selected: 'tv',
   };
 
   search = (movies) => {
     this.setState({ searching: true });
     this.setState({ movies: movies });
   };
-
+  changeTheSelected = (e) => {
+    console.log(e.target.value);
+    this.setState({ selected: e.target.value });
+  };
   setSearchingToFalse = () => {
     if (this.state.searching === true) {
       this.setState({ searching: false });
@@ -117,7 +121,7 @@ export default class TvShowDetails extends Component {
           return (
             <Link
               key={el.id}
-              to={`/tv/${el.id}`}
+              to={`/${this.state.selected}/${el.id}`}
               onClick={() => this.setNewMovie(el.id)}
             >
               <div
@@ -193,7 +197,12 @@ export default class TvShowDetails extends Component {
     );
     return (
       <>
-        <NavBar searching={this.setSearchingToFalse} search={this.search} />{' '}
+        <NavBar
+          selected={this.state.selected}
+          changeSelected={this.changeTheSelected}
+          searching={this.setSearchingToFalse}
+          search={this.search}
+        />{' '}
         {!this.state.searching ? (
           movie
         ) : (

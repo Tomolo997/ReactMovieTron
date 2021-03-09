@@ -20,6 +20,7 @@ export default class MovieDetails extends Component {
     runtime: null,
     searching: false,
     movies: null,
+    selected: 'movie',
   };
 
   search = (movies) => {
@@ -59,7 +60,10 @@ export default class MovieDetails extends Component {
     this.setState({ cast: dataCast.data.cast.slice(0, 20) });
     this.setState({ searching: false });
   };
-
+  changeTheSelected = (e) => {
+    console.log(e.target.value);
+    this.setState({ selected: e.target.value });
+  };
   async componentDidMount() {
     const data = await axios.get(
       `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${API_KEY}&language=en-US`
@@ -116,7 +120,7 @@ export default class MovieDetails extends Component {
           return (
             <Link
               key={el.id}
-              to={`/movie/${el.id}`}
+              to={`/${this.state.selected}/${el.id}`}
               onClick={() => this.setNewMovie(el.id)}
             >
               <div
@@ -192,7 +196,12 @@ export default class MovieDetails extends Component {
     );
     return (
       <>
-        <NavBar searching={this.setSearchingToFalse} search={this.search} />{' '}
+        <NavBar
+          selected={this.state.selected}
+          changeSelected={this.changeTheSelected}
+          searching={this.setSearchingToFalse}
+          search={this.search}
+        />{' '}
         {!this.state.searching ? (
           movie
         ) : (
