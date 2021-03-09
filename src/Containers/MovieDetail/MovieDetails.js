@@ -116,7 +116,7 @@ export default class MovieDetails extends Component {
           return (
             <Link
               key={el.id}
-              to={`/movies/${el.id}`}
+              to={`/movie/${el.id}`}
               onClick={() => this.setNewMovie(el.id)}
             >
               <div

@@ -55,7 +55,7 @@ export class TopMovies extends Component {
       .map((el) => {
         return (
           <Link
-            to={`/movies/${el.id}`}
+            to={`/movie/${el.id}`}
             className={classes.LinkMovieCard}
             key={el.id}
           >
