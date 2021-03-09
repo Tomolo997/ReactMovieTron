@@ -17,6 +17,12 @@ class Home extends Component {
     this.setState({ movies: movies });
   };
 
+  setSearchingToFalse = () => {
+    if (this.state.searching === true) {
+      this.setState({ searching: false });
+    } else return;
+  };
+
   render() {
     let movies = null;
     if (this.state.movies !== null) {
@@ -35,9 +41,9 @@ class Home extends Component {
     }
     return (
       <div>
-        <Navbar search={this.search} />
+        <Navbar searching={this.setSearchingToFalse} search={this.search} />
         {!this.state.searching ? <TopMovies /> : movies}
-        {!this.state.searching ? <TopTvShows /> : null}
+        {!this.state.searching ? <TopTvShows /> : movies}
 
         <Footer />
       </div>

@@ -10,10 +10,14 @@ class Search extends Component {
 
   async componentDidUpdate(_, prevState) {
     if (prevState.movies == this.state.movies) {
-      const res = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
-      );
-      this.setState({ movies: res.data.results });
+      try {
+        const res = await axios.get(
+          `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
+        );
+        this.setState({ movies: res.data.results });
+      } catch (error) {
+        this.props.searching();
+      }
     }
   }
 
