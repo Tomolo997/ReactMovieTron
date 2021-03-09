@@ -56,7 +56,11 @@ export default class TopTvShows extends Component {
       .slice(this.state.start, this.state.end)
       .map((el) => {
         return (
-          <Link to={`/${el.id}`} className={classes.LinkMovieCard} key={el.id}>
+          <Link
+            to={`/tv/${el.id}`}
+            className={classes.LinkMovieCard}
+            key={el.id}
+          >
             <MovieCard
               showMovies={this.state.showMovies}
               id={el.id}

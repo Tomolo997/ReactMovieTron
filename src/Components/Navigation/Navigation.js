@@ -11,7 +11,8 @@ const Navigation = (props) => {
       </Link>
 
       <Search
-        tvShow={props.TvShow}
+        selected={props.selected}
+        changeSelected={props.changeSelected}
         searching={props.searching}
         search={props.search}
       />

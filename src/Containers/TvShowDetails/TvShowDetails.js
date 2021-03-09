@@ -1,11 +1,11 @@
-import classes from './MovieDetail.module.css';
+import classes from './TvShowDetails.module.css';
 import React, { Component } from 'react';
 import NavBar from '../../Components/Navigation/Navigation';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { API_KEY } from '../../config';
 import Footer from '../../Components/Footer/Footer';
-export default class MovieDetails extends Component {
+export default class TvShowDetails extends Component {
   state = {
     id: '',
     title: '',
@@ -40,7 +40,7 @@ export default class MovieDetails extends Component {
   setNewMovie = async (id) => {
     console.log(this.state);
     const data = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`
     );
     this.setState({
       id: data.data.id,
@@ -54,7 +54,7 @@ export default class MovieDetails extends Component {
       runtime: data.data.runtime,
     });
     const dataCast = await axios.get(
-      `https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${this.state.id}/credits?api_key=${API_KEY}&language=en-US`
     );
     this.setState({ cast: dataCast.data.cast.slice(0, 20) });
     this.setState({ searching: false });
@@ -62,22 +62,23 @@ export default class MovieDetails extends Component {
 
   async componentDidMount() {
     const data = await axios.get(
-      `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${this.props.match.params.id}?api_key=${API_KEY}&language=en-US`
     );
+    console.log(data.data);
     this.setState({
       id: data.data.id,
-      title: data.data.original_title,
+      title: data.data.original_name,
       description: data.data.overview,
-      budget: data.data.budget,
+      budget: data.data.seasons.length,
       homepage: data.data.homepage,
-      dateOfRelease: data.data.release_date,
+      dateOfRelease: data.data.first_air_date,
       genreOfMovie: data.data.genres,
       posterPath: data.data.poster_path,
-      runtime: data.data.runtime,
+      runtime: data.data.episode_run_time[0],
     });
     console.log(data.data);
     const dataCast = await axios.get(
-      `https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${this.state.id}/credits?api_key=${API_KEY}&language=en-US`
     );
     this.setState({ cast: dataCast.data.cast.slice(0, 20) });
   }
@@ -116,7 +117,7 @@ export default class MovieDetails extends Component {
           return (
             <Link
               key={el.id}
-              to={`/movies/${el.id}`}
+              to={`/tv/${el.id}`}
               onClick={() => this.setNewMovie(el.id)}
             >
               <div
@@ -164,8 +165,8 @@ export default class MovieDetails extends Component {
             {this.state.runtime} minutes
           </p>
           <p className={classes.TimeStampParagraph}>
-            <span className={classes.DescriptionSpan}>Budget: </span>{' '}
-            {this.numberWithCommas(+this.state.budget)} $
+            <span className={classes.DescriptionSpan}>Seasons: </span>{' '}
+            {this.state.budget}
           </p>
           <p className={classes.TimeStampParagraph}>
             <span className={classes.DescriptionSpan}>Genre: </span>

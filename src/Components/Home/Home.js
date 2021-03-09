@@ -12,11 +12,17 @@ class Home extends Component {
   state = {
     searching: false,
     movies: null,
+    selected: 'movie',
   };
 
   search = (movies) => {
     this.setState({ searching: true });
     this.setState({ movies: movies });
+  };
+
+  changeTheSelected = (e) => {
+    console.log(e.target.value);
+    this.setState({ selected: e.target.value });
   };
 
   setSearchingToFalse = () => {
@@ -31,7 +37,7 @@ class Home extends Component {
       movies = this.state.movies.map((el) => {
         if (el.poster_path) {
           return (
-            <Link key={el.id} to={`/${el.id}`}>
+            <Link key={el.id} to={`/${this.state.selected}/${el.id}`}>
               <div
                 key={el.id}
                 style={{
@@ -56,7 +62,12 @@ class Home extends Component {
     }
     return (
       <div>
-        <Navbar searching={this.setSearchingToFalse} search={this.search} />
+        <Navbar
+          selected={this.state.selected}
+          changeSelected={this.changeTheSelected}
+          searching={this.setSearchingToFalse}
+          search={this.search}
+        />
         {!this.state.searching ? (
           <TopMovies />
         ) : (
