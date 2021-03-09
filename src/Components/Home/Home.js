@@ -5,6 +5,7 @@ import TopTvShows from '../../Containers/Movies/TopTvShows/TopTvShows';
 import Footer from '../Footer/Footer';
 import axios from 'axios';
 import { API_KEY } from '../../config';
+import classes from './Home.module.css';
 
 class Home extends Component {
   state = {
@@ -30,9 +31,9 @@ class Home extends Component {
         return (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <img
+              style={{ width: '200px' }}
               src={`https://image.tmdb.org/t/p/w400${el.poster_path}`}
               key={el.id}
-              style={{ color: 'white' }}
             />
             {el.name}
           </div>
@@ -42,8 +43,12 @@ class Home extends Component {
     return (
       <div>
         <Navbar searching={this.setSearchingToFalse} search={this.search} />
-        {!this.state.searching ? <TopMovies /> : movies}
-        {!this.state.searching ? <TopTvShows /> : movies}
+        {!this.state.searching ? (
+          <TopMovies />
+        ) : (
+          <div className={classes.MovieSearch}>{movies}</div>
+        )}
+        {!this.state.searching ? <TopTvShows /> : null}
 
         <Footer />
       </div>
