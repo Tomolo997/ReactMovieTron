@@ -6,13 +6,14 @@ class Search extends Component {
   state = {
     currentValue: null,
     movies: null,
+    selected: 'movie',
   };
 
   async componentDidUpdate(_, prevState) {
     if (prevState.movies == this.state.movies) {
       try {
         const res = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
+          `https://api.themoviedb.org/3/search/${this.state.selected}?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
         );
         this.setState({ movies: res.data.results });
       } catch (error) {
@@ -35,7 +36,15 @@ class Search extends Component {
           placeholder="Enter Movie"
           onChange={this.currentValueHandler}
         />
-        <button className={classes.SearchButton}>Search</button>
+        <select
+          onChange={(e) => {
+            this.setState({ selected: e.target.value });
+          }}
+          className={classes.SearchButton}
+        >
+          <option value="movie">Movies</option>
+          <option value="tv">Tv Shows</option>
+        </select>
       </div>
     );
   }

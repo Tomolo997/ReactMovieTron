@@ -10,7 +10,11 @@ const Navigation = (props) => {
         <Logo />
       </Link>
 
-      <Search searching={props.searching} search={props.search} />
+      <Search
+        tvShow={props.TvShow}
+        searching={props.searching}
+        search={props.search}
+      />
       <div className={classes.About}>
         <Link to="/About" className={classes.Link}>
           About
