@@ -37,6 +37,29 @@ export default class MovieDetails extends Component {
     console.log(this.state);
   }
 
+  setNewMovie = async (id) => {
+    console.log(this.state);
+    const data = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+    );
+    this.setState({
+      id: data.data.id,
+      title: data.data.original_title,
+      description: data.data.overview,
+      budget: data.data.budget,
+      homepage: data.data.homepage,
+      dateOfRelease: data.data.release_date,
+      genreOfMovie: data.data.genres,
+      posterPath: data.data.poster_path,
+      runtime: data.data.runtime,
+    });
+    const dataCast = await axios.get(
+      `https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=${API_KEY}&language=en-US`
+    );
+    this.setState({ cast: dataCast.data.cast.slice(0, 20) });
+    this.setState({ searching: false });
+  };
+
   async componentDidMount() {
     const data = await axios.get(
       `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${API_KEY}&language=en-US`
@@ -94,7 +117,7 @@ export default class MovieDetails extends Component {
             <Link
               key={el.id}
               to={`/${el.id}`}
-              onClick={() => this.setState({ searching: false })}
+              onClick={() => this.setNewMovie(el.id)}
             >
               <div
                 key={el.id}
