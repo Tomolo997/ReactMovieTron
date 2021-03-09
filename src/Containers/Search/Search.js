@@ -12,7 +12,7 @@ class Search extends Component {
     if (prevState.movies == this.state.movies) {
       try {
         const res = await axios.get(
-          `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
+          `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.currentValue}&language=en-US&page=1&include_adult=false`
         );
         this.setState({ movies: res.data.results });
       } catch (error) {

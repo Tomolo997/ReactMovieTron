@@ -1,6 +1,13 @@
 .MovieSearch {
+  margin-top: 2rem;
   width: 100%;
   height: 100vh;
-  border: 4px solid white;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-gap: 2rem;
+}
+.ElName {
+  font-size: 2rem;
+  color: white;
 }
